@@ -21,9 +21,11 @@ class BowlingGame:
         score = 0
         is_spare = False
         is_Strike = False
-        for frame in self._frames:
+        for i,frame in enumerate (self._frames):
             if is_Strike:
                 score = score + frame.get_first_throw()+frame.get_second_throw()
+                if frame.is_strike():
+                    score = score + self._frames[i+1].get_first_throw()
                 is_Strike = False
             if is_spare:
                 score = score + frame.get_first_throw()
